@@ -2,7 +2,7 @@ pragma solidity ^0.4.0 ;
 
 contract Conses{
 	
-	Request[] public policies;
+	policy[] public policies;
 
 	uint constant ShaLength = 40 ; 
 
@@ -13,7 +13,7 @@ contract Conses{
 		order_complete
 	}
 
-	struct Request{
+	struct policy{
 		uint id;
 		string reference_id;
 		string carrier ; 
@@ -25,7 +25,10 @@ contract Conses{
 
 	function new_request(string reference_id, string carrier , uint premium) returns (bool) {
 
-		Request memory p ;
+		uint policyId = policies.length++;
+        customerPolicies[this].push(policyId);
+        policy p = policies[policyId];
+        
         p.reference_id = reference_id ; 
         p.carrier = carrier ; 
         p.premium = premium ; 
